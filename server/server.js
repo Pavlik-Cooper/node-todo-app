@@ -26,6 +26,10 @@ newTodo.save().then((doc)=>{
 
 });
 
+app.get('/',(req,res)=>{
+        console.log('hi');
+        res.send({hi:'there'});
+});
 app.get('/todos',(req,res)=>{
     Todo.find().then((todos)=>{
         res.send({todos});
