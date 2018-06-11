@@ -6,8 +6,6 @@ MongoClient.connect('mongodb://localhost:27017/TodoApp', (err, db) => {
         return console.log('Unable to connect to MongoDB server');
     }
     console.log('Connected to MongoDB server');
-
-
     //findOneAndDelete
     db.collection('Users')
         .findOneAndUpdate({
