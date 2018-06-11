@@ -39,3 +39,5 @@ var newUser = new User({
 app.listen(3000,()=>{
     console.log('server up on3000')
 });
+
+module.exports = {app};
