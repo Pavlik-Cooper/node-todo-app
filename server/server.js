@@ -45,17 +45,6 @@ app.get('/todos/:id',(req,res)=>{
     });
 });
 
-
-var newUser = new User({
-    'email': 'sfbadfbdf@gmail.com',
-    'username': 'username'
-});
-// newUser.save().then((doc)=>{
-//     console.log(doc);
-// },(e)=>{
-//     console.log('Unable to save todo', e)
-// });
-
 app.listen(port,()=>{
     console.log(`server up on ${port}`)
 });

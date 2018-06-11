@@ -11,7 +11,7 @@ var User = mongoose.model('User',{
         type: String,
         minlength: 6,
         trim: true,
-        default: '     New user      '
+        default: 'New user'
     },
     sex: {
         default: null,
