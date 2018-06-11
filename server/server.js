@@ -5,7 +5,7 @@ var {ObjectID} = require('mongodb');
 var {mongoose} = require('./db/mongoose');
 var {User} = require('./models/user');
 var {Todo} = require('./models/todo');
-
+const port = process.env.PORT || 3000;
 var app = express();
 
 app.use(bodyParser.json());
@@ -56,8 +56,8 @@ var newUser = new User({
 //     console.log('Unable to save todo', e)
 // });
 
-app.listen(3000,()=>{
-    console.log('server up on3000')
+app.listen(port,()=>{
+    console.log(`server up on ${port}`)
 });
 
 module.exports = {app};
