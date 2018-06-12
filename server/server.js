@@ -10,6 +10,7 @@ var app = express();
 
 app.use(bodyParser.json());
 
+// create todo
 app.post('/todos',(req,res)=>{
 
     // console.log(req.body);
@@ -30,6 +31,7 @@ app.get('/',(req,res)=>{
         console.log('hi');
         res.send({hi:'there'});
 });
+// get all todos
 app.get('/todos',(req,res)=>{
     Todo.find().then((todos)=>{
         res.send({todos});
@@ -37,6 +39,7 @@ app.get('/todos',(req,res)=>{
        res.status(404).send(e);
     });
 });
+// get todo by id
 app.get('/todos/:id',(req,res)=>{
     var id = req.params.id;
     if (!ObjectID.isValid(id)) return res.status(404).send({error:'Invalid id specified'});
@@ -45,7 +48,19 @@ app.get('/todos/:id',(req,res)=>{
         if (!todo) return res.status(404).send({error: 'Not found'});
         res.send({todo});
     },(e)=>{
-        res.status(404).send(e);
+        res.status(400).send(e);
+    });
+});
+// delete todo
+app.delete('/todos/:id',(req,res)=>{
+    var id = req.params.id;
+    if (!ObjectID.isValid(id)) return res.status(404).send({error:'Invalid id specified'});
+
+    Todo.findByIdAndRemove(id).then((todo)=>{
+        if (!todo) return res.status(404).send({error: 'Not found'});
+        res.send({todo,message:'todo deleted'});
+    },(e)=>{
+        res.status(400).send(e);
     });
 });
 
